@@ -9,50 +9,46 @@ import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
-import starter.questions.LoginQuestion;
+import starter.questions.LoginFielValidationQuestion;
+import starter.tasks.LoginFielValidationTask;
 import starter.tasks.LoginTask;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class LogInStepDefinitions {
+public class LoginFielValidationStepDefinitions {
+
+
     @Managed(driver = "Appium")
+
     public WebDriver hisMobileDevice;
 
-    //Implementado
+
+
     private final Actor Samuel = Actor.named("Samuel");
 
-    //Implementado
     @Before
-    //public void set_the_stage() {
-    //    OnStage.setTheStage(new OnlineCast());
-    //}
+
     public void setUp() {
         Samuel.can(BrowseTheWeb.with(hisMobileDevice));
     }
 
-
-    @Given("Samuel wants to access the services")
-    public void samuelWantsToAccessTheServices() {
-
-        Samuel.attemptsTo(
-
-        );
-
-    }
-
-    @When("he sends his credentials")
-    public void sendsHisCredentials() throws InterruptedException {
+    @Given("Samuel wants to access the application")
+    public void samuelWantsToAccessTheApplication() {
         Samuel.wasAbleTo(
-                LoginTask.in());
+        );
     }
-
-    @Then("He should see title digita la colilla")
-    public void shouldSeeTitleDigitaLaColilla(){
-        String expectedTitle = "Digita la Colilla";
+    @When("he submits credentials without data")
+    public void heSubmitsCredentialsWithoutData() {
+        Samuel.wasAbleTo(
+                LoginFielValidationTask.go()
+        );
+    }
+    @Then("he should see the text Debe ingresar un asesor")
+    public void heShouldSeeTheTextDebeIngresarUnAsesor() {
+        String expectedTitle = "Debe ingresar un asesor";
         Samuel.should(
-                GivenWhenThen.seeThat("Digita la Colilla", LoginQuestion.value(),
+                GivenWhenThen.seeThat("Debe ingresar un asesor", LoginFielValidationQuestion.value(),
                         equalTo(expectedTitle))
         );
     }
-
 }

@@ -9,50 +9,48 @@ import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
-import starter.questions.LoginQuestion;
-import starter.tasks.LoginTask;
+import starter.questions.ValidationEmptytPasswordQuestion;
+import starter.questions.ValidationEmptytUserQuestion;
+import starter.tasks.ValidationEmptyPasswordTask;
+import starter.tasks.ValidationEmptyUserTask;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class LogInStepDefinitions {
+public class ValidationEmptyUserStepDefinitions {
+
+
     @Managed(driver = "Appium")
+
     public WebDriver hisMobileDevice;
 
-    //Implementado
+
+
     private final Actor Samuel = Actor.named("Samuel");
 
-    //Implementado
     @Before
-    //public void set_the_stage() {
-    //    OnStage.setTheStage(new OnlineCast());
-    //}
+
     public void setUp() {
         Samuel.can(BrowseTheWeb.with(hisMobileDevice));
     }
 
 
-    @Given("Samuel wants to access the services")
-    public void samuelWantsToAccessTheServices() {
 
-        Samuel.attemptsTo(
-
-        );
+    @Given("Samuel to log in to the app")
+    public void samuelToLogInToTheApp() {
 
     }
-
-    @When("he sends his credentials")
-    public void sendsHisCredentials() throws InterruptedException {
+    @When("he submits submit credentials without a user")
+    public void heSubmitsSubmitCredentialsWithoutAUser() {
         Samuel.wasAbleTo(
-                LoginTask.in());
+                ValidationEmptyUserTask.go()
+        );
     }
-
-    @Then("He should see title digita la colilla")
-    public void shouldSeeTitleDigitaLaColilla(){
-        String expectedTitle = "Digita la Colilla";
+    @Then("he should sees the text Debe ingresar un asesor")
+    public void heShouldSeesTheTextDebeIngresarUnAsesor() {
+        String expectedTitle = "Debe ingresar un asesor";
         Samuel.should(
-                GivenWhenThen.seeThat("Digita la Colilla", LoginQuestion.value(),
+                GivenWhenThen.seeThat("Debe ingresar un asesor", ValidationEmptytUserQuestion.value(),
                         equalTo(expectedTitle))
         );
     }
-
 }

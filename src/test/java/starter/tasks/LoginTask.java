@@ -13,8 +13,8 @@ public class LoginTask implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Click.on(LoginView.alertPhoneCalls),
-                Click.on(LoginView.alertFiles),
+                //Click.on(LoginView.alertPhoneCalls),
+                //Click.on(LoginView.alertFiles),
                 Enter.theValue("7868604").into(LoginView.userName),
                 Enter.theValue("25836").into(LoginView.password),
                 Click.on(LoginView.BTN_LOGIN)

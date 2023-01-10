@@ -2,16 +2,17 @@ package starter.questions;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
-import starter.ui.HomeView;
 
-public class LoginQuestion implements Question {
+import starter.ui.ServicesView;
+
+public class DigitalPaperQuestion implements Question {
     @Override
     public String answeredBy(Actor actor) {
-        return HomeView.TITLE_DIGITAL_BUTT.resolveFor(actor).getText();
+        return ServicesView.TITLE_WELCOME.resolveFor(actor).getTextContent();
     }
-
 
     public static Question<String> value(){
-        return new LoginQuestion();
+        return new DigitalPaperQuestion();
     }
 }
+
